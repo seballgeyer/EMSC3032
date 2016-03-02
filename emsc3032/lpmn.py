@@ -40,11 +40,11 @@ def lpmn(X,ndeg):
         Plm[l,l-1]=X*np.sqrt(2.0*l+1)*su
         
         for m in xrange(l-2,0,-1):
-            C=2.0*(m+1.0)/sp.sqrt((l+m+1.0)*(l-m))
+            C=2.0*(m+1.0)/np.sqrt((l+m+1.0)*(l-m))
             C=C*X/SQa
             D=(l+m+2.0)*(l-m-1.0)/((l+m+1.0)*(l-m))
             D=np.sqrt(D)
             Plm[l,m]=C*Plm[l,m+1]-D*Plm[l,m+2]
         #normalise
-        #Plm[:,1:-1]*=sp.sqrt(2)
+        #Plm[:,1:-1]*=np.sqrt(2)
     return Plm

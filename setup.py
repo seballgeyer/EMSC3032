@@ -10,17 +10,10 @@ def read(fname):
 
 setup(
     name = "EMSC3032",
-    version = "0.0.0",
+    version = "0.0.2",
     author = "Sebastien Allgeyer",
     author_email = "sebastien.allgeyer@anu.edu.au",
     description = ("test"),
-    keywords = "example documentation tutorial",
-    url = "http://packages.python.org/an_example_pypi_project",
     packages=['emsc3032'],
-    #long_description=read('README'),
-    classifiers=[
-        "Development Status :: 3 - Alpha",
-        "Topic :: Utilities",
-        "License :: OSI Approved :: BSD License",
-    ],
+    install_requires=['numpy']
 )

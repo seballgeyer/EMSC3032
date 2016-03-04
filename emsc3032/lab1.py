@@ -1,5 +1,24 @@
+# -*- coding: utf-8 -*-
+
+"""
+
+Created on Mon Feb 29 2016
+
+
+@author: Sebastien Allgeyer
+
+"""
+
+
 import numpy as np
 def lpmn(X,ndeg):
+"""
+Generates the associated Legender polynomial of argument X up to the degree ndeg
+it returns an array [ndeg+1,ndeg+1] of the Associated legender function of argument X. for all ordre > degree, the returned value is 0.0
+:param X: The argument of the Associated Legender Functions
+:param ndeg: Maximum degree
+Return Plm
+"""
     Plm=np.zeros([ndeg+1,ndeg+1])
     #assert abs(X)<1, "X (%f) must belong to [-1;1]" % id
     if abs(X)>1:

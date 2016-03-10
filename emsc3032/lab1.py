@@ -11,6 +11,13 @@ Created on Mon Feb 29 2016
 
 
 import numpy as np
+
+try:
+    xrange
+except NameError:
+    xrange=range
+
+
 def lpmn(X,ndeg):
     """ Generates the associated Legender polynomial of argument X up to the degree ndeg
     it returns an array [ndeg+1,ndeg+1] of the Associated legender function of argument X. for all ordre > degree, the returned value is 0.0

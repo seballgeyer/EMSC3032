@@ -10,7 +10,7 @@ def read(fname):
 
 setup(
     name = "EMSC3032",
-    version = "0.0.2",
+    version = "0.0.3",
     author = "Sebastien Allgeyer",
     author_email = "sebastien.allgeyer@anu.edu.au",
     description = ("test"),

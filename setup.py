@@ -14,7 +14,7 @@ setup(
     author = "Sebastien Allgeyer",
     author_email = "sebastien.allgeyer@anu.edu.au",
     description = ("test"),
-    package_data={'ems3032',['data/*.dat']},
+    package_data={'ems3032':['data/*.dat']},
     ext_package='ems3032',
     packages=['emsc3032'],
     install_requires=['numpy']

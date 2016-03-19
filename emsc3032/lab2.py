@@ -23,7 +23,7 @@ def expDtofloat(s):
     return float(s.replace('D','E'))
 
 
-def doublesum_vector(lat,lon,C,S,process=None):
+def sph_sum(lat,lon,C,S,process=None):
     colat=90-lat
     if np.isscalar(colat) :
         colat = np.array([colat])

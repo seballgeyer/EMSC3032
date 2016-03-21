@@ -20,7 +20,7 @@ def read_sph(filename):
 
 
 def expDtofloat(s):
-    return float(s.replace('D','E'))
+    return float(s.replace(b'D',b'E'))
 
 
 def sph_sum(lat,lon,C,S,process=None):
@@ -42,6 +42,9 @@ def sph_sum(lat,lon,C,S,process=None):
         k=k[:degmax+1]
         l=l[:degmax+1]
     coeff=np.zeros(degmax+1)
+    Cconvert = C.copy()
+    Sconvert = S.copy()
+
     if process == 'geoid':
         coeff[1:]+=6371.0e3
     elif process=='ewh':
@@ -49,22 +52,24 @@ def sph_sum(lat,lon,C,S,process=None):
     elif process=='visco':
         coeff[1:]=6371.0e3*(1.1677*n[1:]-0.5233)
     elif process=='defH':
-        coeff[1:]=6371.0e3*h[1:]/(1+k[1:])
+        coeff[2:]=6371.0e3*h[2:]/(1+k[2:])
     elif process=='defV':
-        coeff[1:]=6371.0e3*l[1:]/(1+k[1:])
+        coeff[2:]=6371.0e3*l[2:]/(1+k[2:])
     if process != None:
-        C*=coeff[:,None]*np.sqrt(2)
-        S*=coeff[:,None]*np.sqrt(2)
+        Cconvert=Cconvert*coeff[:,None]*np.sqrt(2)
+        Sconvert=Sconvert*coeff[:,None]*np.sqrt(2)
 
-    for i in range(C.shape[0]-1):
+    for i in range(C.shape[0]):
         m[:,i]=i
+
     for i,clat in enumerate(colat_r):
         cos_colat = np.cos(clat)
         Plm=lpmn(cos_colat,degmax)
         for j,lonval in enumerate(lon_r):
             coslon= np.cos(m*lonval)
             sinlon= np.sin(m*lonval)
-            res[i,j]=np.sum(Plm*(coslon*C+sinlon*S))
+            res[i,j]=np.sum(Plm*(coslon*Cconvert+sinlon*Sconvert))
+
     shp = res.shape
     if shp[0]==(1) and shp[1]==1:
         res=float(res[0,0])

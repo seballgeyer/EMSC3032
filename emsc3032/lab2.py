@@ -20,7 +20,7 @@ def read_sph(filename):
 
 
 def expDtofloat(s):
-    return float(s.replace('D','E'))
+    return float(s.replace(b'D',b'E'))
 
 
 def sph_sum(lat,lon,C,S,process=None):
@@ -49,12 +49,14 @@ def sph_sum(lat,lon,C,S,process=None):
     elif process=='visco':
         coeff[1:]=6371.0e3*(1.1677*n[1:]-0.5233)
     elif process=='defH':
-        coeff[1:]=6371.0e3*h[1:]/(1+k[1:])
+        coeff[2:]=6371.0e3*h[2:]/(1+k[2:])
     elif process=='defV':
-        coeff[1:]=6371.0e3*l[1:]/(1+k[1:])
+        coeff[2:]=6371.0e3*l[2:]/(1+k[2:])
     if process != None:
-        C*=coeff[:,None]*np.sqrt(2)
-        S*=coeff[:,None]*np.sqrt(2)
+        Cconvert=C.copy()*coeff[:,None]*np.sqrt(2)
+        Sconvert=S.copy()*coeff[:,None]*np.sqrt(2)
+    else:
+        Cconvert=C.copy()
 
     for i in range(C.shape[0]-1):
         m[:,i]=i
@@ -64,7 +66,7 @@ def sph_sum(lat,lon,C,S,process=None):
         for j,lonval in enumerate(lon_r):
             coslon= np.cos(m*lonval)
             sinlon= np.sin(m*lonval)
-            res[i,j]=np.sum(Plm*(coslon*C+sinlon*S))
+            res[i,j]=np.sum(Plm*(coslon*Cconvert+sinlon*Sconvert))
     shp = res.shape
     if shp[0]==(1) and shp[1]==1:
         res=float(res[0,0])

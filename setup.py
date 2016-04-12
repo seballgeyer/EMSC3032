@@ -27,7 +27,7 @@ setup(
     version = "0.0.3",
     author = "Sebastien Allgeyer",
     author_email = "sebastien.allgeyer@anu.edu.au",
-    description = ("test"),
+    description = ("library for the EMSC3032 lecture ANU"),
     package_data={'emsc3032':['data/*.dat']},
     ext_package='emsc3032',
     packages=['emsc3032'],

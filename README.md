@@ -2,6 +2,12 @@
 
 This functions has been put on an anaconda repository
 
+To install directly from the github repository.
+
+```bash
+pip install -U git+https://github.com/seballgeyer/EMSC3032.git
+```
+
 It contains the essential function to achieve the computational lab of the EMSC3032.
 
 ## Associated Legendre polynomials

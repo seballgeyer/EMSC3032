@@ -5,8 +5,8 @@ from os.path import join, split
 datadir = join(split(__file__)[0], 'data/')
 
 
-def read_sph(filename):
-    data=np.loadtxt(filename)
+def read_sph(filename, skiprows=0):
+    data=np.loadtxt(filename, skiprows=skiprows)
     n=data[:,0]
     m=data[:,1]
     C=data[:,2]

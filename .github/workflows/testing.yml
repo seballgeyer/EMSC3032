@@ -22,4 +22,5 @@ jobs:
 
       - name: Run Testing
         run: |
+          pip install numpy
           python -m unittest discover

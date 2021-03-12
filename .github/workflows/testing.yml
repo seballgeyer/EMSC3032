@@ -22,5 +22,4 @@ jobs:
 
       - name: Run Testing
         run: |
-          pip install unittest
           python -m unittest discover

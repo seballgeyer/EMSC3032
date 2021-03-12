@@ -20,7 +20,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Install requirements
+        run: pip install -r requirements.txt
       - name: Run Testing
-        run: |
-          pip install numpy
-          python -m unittest discover
+        run: python -m unittest discover

@@ -13,9 +13,9 @@ def read_sph(filename, skiprows=0):
     S = data[:, 3]
     Cmat = np.zeros([int(max(n)+1), int(max(n)+1)])
     Smat = np.zeros([int(max(n)+1), int(max(n)+1)])
-    for i in range(len(C)):
-        Cmat[int(n[i]), int(m[i])] = C[i]
-        Smat[int(n[i]), int(m[i])] = S[i]
+    idx = np.tril_indices(max(n)+1, k=0, m=max(n)+1)
+    Cmat[idx] = C
+    Smat[idx] = S
     return Cmat, Smat
 
 
